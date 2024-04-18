@@ -29,8 +29,11 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 
-    implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:2.0.0-alpha"))
+//    implementation(platform("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:2.0.0-alpha"))
 //    implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
+
+    implementation 'io.micrometer:micrometer-tracing-bridge-otel'
+
 }
 
 tasks.named('test') {
