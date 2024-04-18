@@ -10,16 +10,16 @@ server:
 b-service:
   url: http://localhost:8081
 
-management:
-  tracing:
-    baggage:
-      remote-fields: email
-      correlation:
-        fields: email
-    propagation:
-      type: w3c
-
-
-logging:
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} -  %X{email} - %X{traceId}- %msg%n"
+#management:
+#  tracing:
+#    baggage:
+#      remote-fields: email
+#      correlation:
+#        fields: email
+#    propagation:
+#      type: w3c
+#
+#
+#logging:
+#  pattern:
+#    console: "%d{yyyy-MM-dd HH:mm:ss} -  %X{email} - %X{traceId}- %msg%n"
