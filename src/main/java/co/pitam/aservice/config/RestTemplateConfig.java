@@ -9,9 +9,8 @@ import org.springframework.web.client.RestTemplate;
 public class RestTemplateConfig {
 
     @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplateBuilder()
-                .interceptors()
+    public RestTemplate restTemplate(RestTemplateBuilder templateBuilder) {
+        return templateBuilder
                 .build();
     }
 

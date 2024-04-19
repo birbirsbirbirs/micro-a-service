@@ -4,8 +4,12 @@ spring:
   output:
     ansi:
       enabled: always
+  threads:
+    virtual:
+      enabled: false
+
 server:
-  port: 8080
+  port: 8082
 
 b-service:
   url: http://localhost:8081
@@ -20,6 +24,16 @@ b-service:
 #      type: w3c
 #
 #
-#logging:
-#  pattern:
-#    console: "%d{yyyy-MM-dd HH:mm:ss} -  %X{email} - %X{traceId}- %msg%n"
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} -  %X{email} - %X{traceId} - %X{power} -%X{customerId} - %msg%n"
+management:
+  tracing:
+    baggage:
+      correlation:
+        fields: orderId, customerId, power
+        enabled: true
+      remote-fields: orderId, customerId, power
+#    propagation:
+#      produce: [b3,w3c]
+#      consume: [b3,w3c]

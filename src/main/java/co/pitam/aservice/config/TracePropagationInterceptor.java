@@ -1,33 +1,23 @@
 package co.pitam.aservice.config;
 
 
-import io.micrometer.tracing.Span;
-import io.micrometer.tracing.Tracer;
-import io.opentelemetry.context.Context;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpRequest;
-import org.springframework.http.client.ClientHttpRequestExecution;
-import org.springframework.http.client.ClientHttpRequestInterceptor;
-import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
 @RequiredArgsConstructor
 @Component
-public class TracePropagationInterceptor implements ClientHttpRequestInterceptor {
-
-    private final Tracer tracer;
+public class TracePropagationInterceptor extends OncePerRequestFilter {
 
     @Override
-    public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
-        Context currentContext = Context.current();
-        Span span = tracer.currentSpan();
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        HttpHeaders headers = request.getHeaders();
-//        headers.add("traceparent",);
-//        headers.add("tracestate",);
-        return execution.execute(request, body);
+        filterChain.doFilter(request,response);
     }
 }
