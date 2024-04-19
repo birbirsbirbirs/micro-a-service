@@ -9,7 +9,7 @@ spring:
       enabled: false
 
 server:
-  port: 8082
+  port: 8080
 
 b-service:
   url: http://localhost:8081
@@ -26,7 +26,7 @@ b-service:
 #
 logging:
   pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} -  %X{email} - %X{traceId} - %X{power} -%X{customerId} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %thread - %X{traceId} - %X{power} -%X{customerId} - %msg%n"
 management:
   tracing:
     baggage:
