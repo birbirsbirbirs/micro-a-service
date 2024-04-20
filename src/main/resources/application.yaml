@@ -4,9 +4,6 @@ spring:
   output:
     ansi:
       enabled: always
-  threads:
-    virtual:
-      enabled: false
 
 server:
   port: 8080
