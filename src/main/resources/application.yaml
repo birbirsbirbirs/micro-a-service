@@ -4,6 +4,22 @@ spring:
   output:
     ansi:
       enabled: always
+  cloud:
+    aws:
+      endpoint: http://localhost:4566
+      region:
+        static: us-west-1
+      credentials:
+        access-key: noop
+        secret-key: noop
+    stream:
+      bindings:
+        outputsns-out-0:
+          destination: arn:aws:sns:us-west-1:000000000000:sns-1 # need to change every time it is provision
+          content-type: application/json
+          binder: sns
+    function:
+      definition: outputsns
 
 server:
   port: 8080

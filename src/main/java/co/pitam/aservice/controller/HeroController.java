@@ -3,11 +3,14 @@ package co.pitam.aservice.controller;
 
 import co.pitam.aservice.model.Hero;
 import co.pitam.aservice.service.PtmAsynService;
+import co.pitam.aservice.service.PublishHero;
 import io.micrometer.tracing.Tracer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -26,6 +29,7 @@ public class HeroController {
     private final WebClient webClient;
     private final Tracer tracer;
     private final PtmAsynService ptmAsynService;
+    private final PublishHero publishHero;
 
 
     @GetMapping
@@ -56,5 +60,10 @@ public class HeroController {
 
         log.info("Hero from webclient, b-service: {}", hero);
         return hero;
+    }
+
+    @PostMapping("/sns")
+    public void publishHero(@RequestBody Hero hero) {
+        publishHero.sendOrder(hero);
     }
 }
