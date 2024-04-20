@@ -32,7 +32,8 @@ dependencies {
 
     implementation 'io.micrometer:micrometer-tracing-bridge-otel'
 
-    implementation 'de.idealo.spring:spring-cloud-stream-binder-sns:2.1.0'
+//    implementation 'de.idealo.spring:spring-cloud-stream-binder-sns:2.1.0'
+    implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit:4.1.1'
 }
 
 tasks.named('test') {

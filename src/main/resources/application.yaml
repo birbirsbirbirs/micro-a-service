@@ -14,12 +14,11 @@ spring:
         secret-key: noop
     stream:
       bindings:
-        outputsns-out-0:
-          destination: arn:aws:sns:us-west-1:000000000000:sns-1 # need to change every time it is provision
+        output-out-0:
+#          destination: arn:aws:sns:us-west-1:000000000000:sns-1 # need to change every time it is provision
+          destination: channeldestination # need to change every time it is provision
           content-type: application/json
-          binder: sns
-    function:
-      definition: outputsns
+
 
 server:
   port: 8080
@@ -39,7 +38,12 @@ b-service:
 #
 logging:
   pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} - %thread - %X{traceId} - %X{power} -%X{customerId} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %thread - %X{traceId} - %X{power} -%X{customerId} - %logger{36} - %msg%n"
+#  level:
+#    io.micrometer: debug
+#    com.rabbitmq: debug
+#    org.springframework.cloud: debug
+#    io.micrometer.tracing.otel: debug
 management:
   tracing:
     baggage:
