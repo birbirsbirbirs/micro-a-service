@@ -17,7 +17,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @Component
-public class TracePropagationInterceptor extends OncePerRequestFilter {
+public class RestInterceptor extends OncePerRequestFilter {
     private final Tracer tracer;
     private final TracingProperties tracingProperties;
 
@@ -27,7 +27,6 @@ public class TracePropagationInterceptor extends OncePerRequestFilter {
         Map<String, String> allBaggage = tracer.getAllBaggage();
         List<String> fields = tracingProperties.getBaggage().getCorrelation().getFields();
 //        fields.parallelStream().filter(p->!allBaggage.containsKey(p)).forEach(p->tracer.createBaggageInScope(p,null));
-
         filterChain.doFilter(request,response);
     }
 }

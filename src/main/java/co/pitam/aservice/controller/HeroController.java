@@ -4,6 +4,8 @@ package co.pitam.aservice.controller;
 import co.pitam.aservice.model.Hero;
 import co.pitam.aservice.service.PtmAsynService;
 import co.pitam.aservice.service.PublishHero;
+import io.micrometer.observation.Observation;
+import io.micrometer.observation.ObservationRegistry;
 import io.micrometer.tracing.BaggageManager;
 import io.micrometer.tracing.Tracer;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,7 @@ public class HeroController {
     private final WebClient webClient;
     private final Tracer tracer;
     private final BaggageManager baggageManager;
+    private final ObservationRegistry observationRegistry;
     private final PtmAsynService ptmAsynService;
     private final PublishHero publishHero;
 
@@ -37,7 +40,20 @@ public class HeroController {
     public Hero getHero() {
         String randomString = UUID.randomUUID().toString();
         log.info("updating power value: {}", randomString);
-//        tracer.createBaggageInScope("power", "power-" + randomString);
+
+
+//        this works but does not update the Context
+//        Span span = this.tracer.nextSpan();
+//        try (Tracer.SpanInScope ws = this.tracer.withSpan(span.start())) {
+//            try (BaggageInScope baggage = this.tracer.createBaggageInScope("power", "power-" + randomString)) {
+//
+//            }
+//        } finally {
+//            span.end();
+//        }
+
+        Observation currentObservation = observationRegistry.getCurrentObservation();
+
 
         ptmAsynService.runLog();
 
@@ -66,11 +82,11 @@ public class HeroController {
 
     @GetMapping("/sns")
     public void publishHero() {
-        Faker faker=new Faker();
+        Faker faker = new Faker();
         Hero hero = Hero.builder().name(faker.name().fullName())
                 .power(faker.job().field())
                 .build();
-        log.info("publishing: {}",hero);
+        log.info("publishing: {}", hero);
         publishHero.sendOrder(hero);
     }
 }
