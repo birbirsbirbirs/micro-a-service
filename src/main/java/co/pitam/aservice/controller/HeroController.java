@@ -32,7 +32,7 @@ public class HeroController {
     public Hero getHero() {
         String randomString = UUID.randomUUID().toString();
         log.info("updating power value: {}", randomString);
-        tracer.createBaggageInScope("power", "power-" + randomString);
+//        tracer.createBaggageInScope("power", "power-" + randomString);
 
         ptmAsynService.runLog();
 
