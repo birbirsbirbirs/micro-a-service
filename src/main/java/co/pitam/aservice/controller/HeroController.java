@@ -4,16 +4,18 @@ package co.pitam.aservice.controller;
 import co.pitam.aservice.model.Hero;
 import co.pitam.aservice.service.PtmAsynService;
 import co.pitam.aservice.service.PublishHero;
+import io.micrometer.tracing.BaggageManager;
 import io.micrometer.tracing.Tracer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.datafaker.Faker;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,14 +28,15 @@ public class HeroController {
     private final RestTemplate restTemplate;
     private final WebClient webClient;
     private final Tracer tracer;
+    private final BaggageManager baggageManager;
     private final PtmAsynService ptmAsynService;
     private final PublishHero publishHero;
 
 
     @GetMapping
     public Hero getHero() {
-//        String randomString = UUID.randomUUID().toString();
-//        log.info("updating power value: {}", randomString);
+        String randomString = UUID.randomUUID().toString();
+        log.info("updating power value: {}", randomString);
 //        tracer.createBaggageInScope("power", "power-" + randomString);
 
         ptmAsynService.runLog();
@@ -45,9 +48,10 @@ public class HeroController {
 
     @GetMapping("/webclient")
     public Hero getHeroWebClient() {
-//        String randomString = UUID.randomUUID().toString();
-//        log.info("updating power value webclient: {}", randomString);
+        String randomString = UUID.randomUUID().toString();
+        log.info("updating power value webclient: {}", randomString);
 //        tracer.createBaggageInScope("power", "power-" + randomString);
+
 
         ptmAsynService.runLog();
 
@@ -60,8 +64,13 @@ public class HeroController {
         return hero;
     }
 
-    @PostMapping("/sns")
-    public void publishHero(@RequestBody Hero hero) {
+    @GetMapping("/sns")
+    public void publishHero() {
+        Faker faker=new Faker();
+        Hero hero = Hero.builder().name(faker.name().fullName())
+                .power(faker.job().field())
+                .build();
+        log.info("publishing: {}",hero);
         publishHero.sendOrder(hero);
     }
 }

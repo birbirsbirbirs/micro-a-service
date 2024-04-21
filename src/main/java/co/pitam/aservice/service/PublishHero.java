@@ -26,7 +26,7 @@ public class PublishHero {
     public void sendOrder(Hero hero) {
         String randomString = UUID.randomUUID().toString();
         log.info("updating power producer binder: {}", randomString);
-        tracer.createBaggageInScope("power", "power-" + randomString);
+//        tracer.createBaggageInScope("power", "power-" + randomString);
         Observation.createNotStarted("stream.producer", observationRegistry).observe(() -> {
             log.info("<ACCEPTANCE_TEST> <TRACE:{}> Hello from producer", this.tracer.currentSpan().context().traceId());
             this.streamBridge.send("output-out-0", hero);
