@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.UUID;
-
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -34,9 +32,9 @@ public class HeroController {
 
     @GetMapping
     public Hero getHero() {
-        String randomString = UUID.randomUUID().toString();
-        log.info("updating power value: {}", randomString);
-        tracer.createBaggageInScope("power", "power-" + randomString);
+//        String randomString = UUID.randomUUID().toString();
+//        log.info("updating power value: {}", randomString);
+//        tracer.createBaggageInScope("power", "power-" + randomString);
 
         ptmAsynService.runLog();
 
@@ -47,9 +45,9 @@ public class HeroController {
 
     @GetMapping("/webclient")
     public Hero getHeroWebClient() {
-        String randomString = UUID.randomUUID().toString();
-        log.info("updating power value webclient: {}", randomString);
-        tracer.createBaggageInScope("power", "power-" + randomString);
+//        String randomString = UUID.randomUUID().toString();
+//        log.info("updating power value webclient: {}", randomString);
+//        tracer.createBaggageInScope("power", "power-" + randomString);
 
         ptmAsynService.runLog();
 
