@@ -35,6 +35,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
 
+    implementation "io.opentelemetry.instrumentation:opentelemetry-aws-sdk-2.2-autoconfigure"
+    implementation 'de.idealo.spring:spring-cloud-stream-binder-sns:2.1.0'
+
     implementation 'net.datafaker:datafaker:2.1.0'
 }
 
