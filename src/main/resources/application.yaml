@@ -16,10 +16,18 @@ management:
       remote-fields: email
       correlation:
         fields: email
-    propagation:
-      type: w3c
+        enabled: true
 
 
 logging:
   pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} -  %X{email} - %X{traceId}- %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} -  %X{email} - %X{traceId} - %X{spanId} - %t - %msg%n"
+
+otel:
+  logs:
+    exporter: none
+  metrics:
+    exporter: none
+  traces:
+    exporter: none
+
