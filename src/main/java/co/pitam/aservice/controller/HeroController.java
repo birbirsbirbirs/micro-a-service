@@ -4,9 +4,7 @@ package co.pitam.aservice.controller;
 import co.pitam.aservice.model.Hero;
 import co.pitam.aservice.service.PtmAsynService;
 import co.pitam.aservice.service.PublishHero;
-import io.micrometer.observation.Observation;
-import io.micrometer.observation.ObservationRegistry;
-import io.micrometer.tracing.BaggageManager;
+import io.micrometer.tracing.BaggageInScope;
 import io.micrometer.tracing.Tracer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,8 +28,6 @@ public class HeroController {
     private final RestTemplate restTemplate;
     private final WebClient webClient;
     private final Tracer tracer;
-    private final BaggageManager baggageManager;
-    private final ObservationRegistry observationRegistry;
     private final PtmAsynService ptmAsynService;
     private final PublishHero publishHero;
 
@@ -52,8 +48,9 @@ public class HeroController {
 //            span.end();
 //        }
 
-        Observation currentObservation = observationRegistry.getCurrentObservation();
+            try (BaggageInScope baggage = this.tracer.createBaggageInScope("power", "power-" + randomString)) {
 
+            }
 
         ptmAsynService.runLog();
 
