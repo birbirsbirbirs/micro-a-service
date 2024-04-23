@@ -34,6 +34,8 @@ public class HeroController {
 
     @GetMapping
     public Hero getHero(){
+        String randomString = UUID.randomUUID().toString();
+        emailBaggage = tracer.createBaggageInScope("email", "email-" + randomString);
         ptmAsynService.runLog();
         Hero hero = restTemplate.getForObject(bServiceUrl, Hero.class);
         log.info("Hero from b-service: {}",hero);

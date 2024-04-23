@@ -1,12 +1,11 @@
 package co.pitam.aservice.ptmSNS;
 
 import co.pitam.aservice.model.Hero;
+import co.pitam.aservice.service.PtmAsynService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import net.datafaker.Faker;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -14,8 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/sns")
 public class PtmSNSController {
     private final PtmSNSService ptmSNSService;
-    @PostMapping
-    public void publishHero(@RequestBody Hero hero) {
+    private final PtmAsynService ptmAsynService;
+    @GetMapping
+    public void publishHero() {
+        Faker faker=new Faker();
+        Hero hero = Hero.builder().name(faker.name().fullName())
+                .power(faker.job().title())
+                .build();
+        ptmAsynService.runLog();
+        log.info("sns publish hero: {}",hero);
         ptmSNSService.sendOrder(hero);
     }
 }
