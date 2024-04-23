@@ -1,28 +1,27 @@
 package co.pitam.aservice.ptmSNS;
 
 import co.pitam.aservice.model.Hero;
+import io.micrometer.observation.Observation;
+import io.micrometer.observation.ObservationRegistry;
+import io.micrometer.tracing.Tracer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
-
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.function.Supplier;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class PtmSNSService {
-    private final BlockingQueue<Hero> orderEvent = new LinkedBlockingQueue<>();
+    private final Tracer tracer;
 
-    @Bean
-    public Supplier<Hero> ptmsns() {
-        return () -> this.orderEvent.poll();
-    }
+    private final ObservationRegistry observationRegistry;
+    private final StreamBridge streamBridge;
+
 
     public void sendOrder(Hero hero) {
-        this.orderEvent.offer(hero);
-        log.info("Event sent: " + hero);
+        Observation.createNotStarted("stream.producer", observationRegistry).observe(() -> {
+            this.streamBridge.send("ptmsns-out-0", hero);
+        });
     }
 }

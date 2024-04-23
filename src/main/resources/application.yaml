@@ -20,10 +20,6 @@ spring:
         ptmsns-out-0:
           destination: arn:aws:sns:us-west-1:000000000000:sns-1 # need to change every time it is provision
           binder: sns
-    function:
-      definition: ptmsns
-
-
 
 
 b-service:
@@ -46,5 +42,5 @@ otel:
     exporter: none
   metrics:
     exporter: none
-  traces:
-    exporter: none
+#  traces:
+#    exporter: none

@@ -2,6 +2,8 @@ package co.pitam.aservice.config;
 
 import io.micrometer.context.ContextExecutorService;
 import io.micrometer.context.ContextSnapshot;
+import io.micrometer.observation.ObservationRegistry;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
@@ -10,9 +12,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-
+@RequiredArgsConstructor
 @Configuration(proxyBeanMethods = false)
 public class AsyncTraceContextConfig implements AsyncConfigurer, WebMvcConfigurer {
+    private final ObservationRegistry observationRegistry;
 
     @Override
     public Executor getAsyncExecutor() {
