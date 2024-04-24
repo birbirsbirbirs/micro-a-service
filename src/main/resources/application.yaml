@@ -33,14 +33,14 @@ management:
         fields: email
         enabled: true
 
-logging:
-  pattern:
-    console: "%d{HH:mm:ss} - %t %X{traceId} %X{spanId} %X{email} %X{power}- %msg%n"
+#logging:
+#  pattern:
+#    console: "%d{HH:mm:ss} - %t %X{traceId} %X{spanId} %X{email} %X{power}- %msg%n"
 
 otel:
   logs:
-    exporter: none
+    exporter: console
   metrics:
-    exporter: none
-#  traces:
-#    exporter: none
+    exporter: console
+  traces:
+    exporter: console
