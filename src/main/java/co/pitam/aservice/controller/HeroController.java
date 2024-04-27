@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -25,12 +26,17 @@ public class HeroController {
     private String bServiceUrl;
 
     private final RestTemplate restTemplate;
+    private final RestClient restClient;
     private final WebClient webClient;
     private final PtmAsynService ptmAsynService;
     private final Tracer tracer;
 
     public static BaggageInScope emailBaggage;
 
+    @GetMapping("/hello")
+    public String hellos() {
+        return "Hello Worlds";
+    }
 
     @GetMapping
     public Hero getHero(){
@@ -38,6 +44,16 @@ public class HeroController {
         emailBaggage = tracer.createBaggageInScope("email", "email-" + randomString);
         ptmAsynService.runLog();
         Hero hero = restTemplate.getForObject(bServiceUrl, Hero.class);
+        log.info("Hero from b-service: {}",hero);
+        return hero;
+    }
+
+    @GetMapping("/restClient")
+    public Hero getHeroRestClient(){
+        String randomString = UUID.randomUUID().toString();
+        emailBaggage = tracer.createBaggageInScope("email", "email-" + randomString);
+        ptmAsynService.runLog();
+        Hero hero = restClient.get().uri(bServiceUrl).retrieve().body(Hero.class);
         log.info("Hero from b-service: {}",hero);
         return hero;
     }

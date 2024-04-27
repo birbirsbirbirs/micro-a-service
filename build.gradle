@@ -8,7 +8,7 @@ group = 'co.pitam'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '17'
+    sourceCompatibility = '21'
 }
 
 configurations {
@@ -39,6 +39,7 @@ dependencies {
     implementation 'de.idealo.spring:spring-cloud-stream-binder-sns:2.1.0'
 
     implementation 'net.datafaker:datafaker:2.1.0'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
 tasks.named('test') {
@@ -51,4 +52,8 @@ dependencyManagement {
         mavenBom 'io.opentelemetry:opentelemetry-bom:1.37.0'
         mavenBom 'io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:2.3.0-alpha'
     }
+}
+
+configurations {
+    all*.exclude group: 'commons-logging', module: 'commons-logging'
 }

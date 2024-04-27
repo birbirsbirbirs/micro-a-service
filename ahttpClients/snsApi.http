@@ -1,0 +1,211 @@
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}
+###
+GET http://localhost:8080/sns
+
+> {%
+
+    client.test("assert 200 status", function () {
+        client.assert(response.status === 200, "expected 200: but: " + response.status);
+    });
+
+%}

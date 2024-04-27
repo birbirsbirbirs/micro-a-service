@@ -3,9 +3,15 @@ server:
 spring:
   application:
     name: a-service
+  threads:
+    virtual:
+      enabled: true
   output:
     ansi:
       enabled: always
+  devtools:
+    restart:
+      enabled: true
   cloud:
     aws:
       endpoint: http://localhost:4566
@@ -39,8 +45,15 @@ management:
 
 otel:
   logs:
-    exporter: console
+    exporter: none
   metrics:
-    exporter: console
+    exporter: none
   traces:
-    exporter: console
+    exporter: none
+  propagators: [tracecontext,baggage]
+  resource:
+    attributes:
+      service:
+        name: a-service
+        namespace: micro-a-b
+
