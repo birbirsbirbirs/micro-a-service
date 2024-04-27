@@ -40,6 +40,10 @@ dependencies {
 
     implementation 'net.datafaker:datafaker:2.1.0'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    testImplementation 'com.intuit.karate:karate-junit5:1.4.1'
+    testImplementation 'com.linecorp.armeria:armeria:1.28.3'
+    testImplementation 'org.springframework.experimental.boot:spring-boot-testjars:0.0.1'
 }
 
 tasks.named('test') {
