@@ -48,8 +48,8 @@ otel:
     exporter: none
   metrics:
     exporter: none
-  traces:
-    exporter: none
+#  traces:
+#    exporter: none
   propagators: [tracecontext,baggage]
   resource:
     attributes:
